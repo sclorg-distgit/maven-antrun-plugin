@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.7
-Release:        8.12%{?dist}
+Release:        8.13%{?dist}
 Summary:        Maven AntRun Plugin
 
 License:        ASL 2.0
@@ -14,17 +14,17 @@ Patch0:         fix-deps.patch
 
 BuildArch: noarch
 
-BuildRequires: maven30-plexus-utils
+BuildRequires: %{?scl_prefix}plexus-utils
 BuildRequires: %{?scl_prefix_java_common}ant
 BuildRequires: %{?scl_prefix_java_common}maven-local
-BuildRequires: maven30-maven-install-plugin
-BuildRequires: maven30-maven-compiler-plugin
-BuildRequires: maven30-maven-plugin-plugin
-BuildRequires: maven30-maven-resources-plugin
-BuildRequires: maven30-maven-surefire-plugin
-BuildRequires: maven30-maven-surefire-provider-junit
-BuildRequires: maven30-maven-jar-plugin
-BuildRequires: maven30-maven-javadoc-plugin
+BuildRequires: %{?scl_prefix}maven-install-plugin
+BuildRequires: %{?scl_prefix}maven-compiler-plugin
+BuildRequires: %{?scl_prefix}maven-plugin-plugin
+BuildRequires: %{?scl_prefix}maven-resources-plugin
+BuildRequires: %{?scl_prefix}maven-surefire-plugin
+BuildRequires: %{?scl_prefix}maven-surefire-provider-junit
+BuildRequires: %{?scl_prefix}maven-jar-plugin
+BuildRequires: %{?scl_prefix}maven-javadoc-plugin
 
 
 %description
@@ -38,20 +38,20 @@ API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %patch0
 #%patch1
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -65,6 +65,9 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.7-8.13
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.7-8.12
 - maven33 rebuild
 
