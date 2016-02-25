@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.7
-Release:        8.13%{?dist}
+Release:        8.14%{?dist}
 Summary:        Maven AntRun Plugin
 
 License:        ASL 2.0
@@ -16,7 +16,7 @@ BuildArch: noarch
 
 BuildRequires: %{?scl_prefix}plexus-utils
 BuildRequires: %{?scl_prefix_java_common}ant
-BuildRequires: %{?scl_prefix_java_common}maven-local
+BuildRequires: %{?scl_prefix}maven-local
 BuildRequires: %{?scl_prefix}maven-install-plugin
 BuildRequires: %{?scl_prefix}maven-compiler-plugin
 BuildRequires: %{?scl_prefix}maven-plugin-plugin
@@ -65,6 +65,9 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.7-8.14
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.7-8.13
 - maven33 rebuild #2
 
